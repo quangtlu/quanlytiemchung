@@ -1,0 +1,41 @@
+<?php
+
+class NguoidungModel extends BaseModel {
+    const TABLE = 'nguoidung';
+    const TABLE2 = 'nhomquyen';
+    const TABLE3 = 'dondangkytiemchung';
+
+
+
+    public function getAll($select = ['*'],$orderBys = [''],$limit = 15){
+        return $this->all(self::TABLE,$select,$orderBys,$limit);
+    }
+    public function store($data){
+        $this->create(self::TABLE,$data);
+    }
+    public function checkExist($column,$value){
+        return $this->isExist(self::TABLE,$column,$value);
+    }
+    public function checkExitsUpdate($column,$value,$id){
+        return $this->isExistUpdate(self::TABLE,$column,$value,$id);
+    }
+    public function findById($id){
+        return $this->find(self::TABLE,$id);
+    }
+    public function updateData($id,$data){
+        $this->update(self::TABLE,$id,$data);
+    }
+    public function deleteData($id){
+        $this->destroy(self::TABLE,$id);
+    }
+    public function getInfoUser($col,$value){
+        return $this->findBy(self::TABLE,$col,$value);
+    }
+    public function getAllInfo($col,$value){
+        return $this->findAllBy(self::TABLE,$col,$value);
+    }
+    public function findByOneCondition($condition,$col,$val){
+        return $this->getByOneCondition(self::TABLE,self::TABLE3,$condition,$col,$val);
+    }
+
+}
